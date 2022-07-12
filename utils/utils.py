@@ -37,7 +37,9 @@ def load_checkpoint(model, optimizer=None, path=None):
     model.load_state_dict(checkpoint['model_state_dict'])
     if optimizer is not None:
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-    iters = checkpoint['iters']
+        iters = checkpoint['iters']
+    else:
+        iters = None # for the best model.
     try:
         best_score = checkpoint['best_score']
         return model, optimizer, iters, best_score
